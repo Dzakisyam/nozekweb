@@ -1,0 +1,597 @@
+/* ========= GLOBAL ========= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #000;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* ========= FADE ANIMATION ========= */
+.fade {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========= NAVIGATION BAR ========= */
+.top-nav {
+  width: 100%;
+  padding: 20px 60px;
+  position: fixed;
+  top: 0;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 255, 255, 0.15);
+  z-index: 1000;
+}
+
+.top-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+  justify-content: flex-end;
+}
+
+.top-nav a {
+  color: white;
+  text-decoration: none;
+  letter-spacing: 1px;
+  font-weight: 600;
+  position: relative;
+}
+
+.top-nav a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background: cyan;
+  bottom: -4px;
+  left: 0;
+  transition: .3s;
+}
+
+.top-nav a:hover::after {
+  width: 100%;
+}
+
+/* ========= HERO HOME ========= */
+.hero-home {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ==== Moving Text Layers ==== */
+.moving-text {
+  position: absolute;
+  width: 250%;
+  display: flex;
+  gap: 80px;
+  opacity: 0.55;
+  filter: drop-shadow(0 0 40px cyan);
+  animation: moveTxt 18s linear infinite;
+}
+
+.moving-text h1 {
+  font-size: 10rem;
+  font-weight: 900;
+  white-space: nowrap;
+  color: white;
+}
+
+.layer1 { top: 15%; }
+.layer2 { top: 35%; opacity: 0.5; }
+.layer3 { top: 55%; opacity: 0.45; }
+
+@keyframes moveTxt {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ========= HERO IMAGE ========= */
+.hero-center img {
+  width: 650px;
+  border-radius: 40px;
+  filter: drop-shadow(0 0 25px cyan);
+  transition: .3s;
+}
+
+.hero-center img:hover {
+  filter: drop-shadow(0 0 40px cyan);
+  transform: scale(1.03);
+}
+
+/* ========= RIGHT SIDE TEXT ========= */
+.side-text {
+  position: absolute;
+  right: 60px;
+  top: 40%;
+  text-align: right;
+  line-height: 32px;
+}
+
+.side-text p {
+  font-size: 1.1rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+/* ========= CONTENT PAGES ========= */
+.page-container {
+  padding-top: 150px;
+  padding-bottom: 250px;   /* ruang agar footer tidak naik */
+  width: 80%;
+  min-height: 100vh;       /* pastikan halaman minimal setinggi layar */
+  margin: auto;
+}
+
+
+.page-container h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: cyan;
+  text-align: center;
+}
+
+.page-box {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid cyan;
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* ========= GALLERY GRID ========= */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  border-radius: 12px;
+  transition: .3s;
+  filter: drop-shadow(0 0 10px cyan);
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 20px cyan);
+}
+
+/* ========= BACKGROUND ORNAMENTS ========= */
+
+.bg-ornament {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;  
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Orb — bola neon besar */
+.bg-ornament::before {
+  content: "";
+  position: absolute;
+  top: -100px;
+  left: -100px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(0,255,255,0.3), transparent 70%);
+  filter: blur(90px);
+  animation: floatOrb 10s infinite alternate ease-in-out;
+}
+
+/* Orb kedua */
+.bg-ornament::after {
+  content: "";
+  position: absolute;
+  bottom: -120px;
+  right: -120px;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(0,170,255,0.35), transparent 70%);
+  filter: blur(85px);
+  animation: floatOrb2 12s infinite alternate ease-in-out;
+}
+
+/* Animasi orb */
+@keyframes floatOrb {
+  0% { transform: translate(0,0); }
+  100% { transform: translate(80px,60px); }
+}
+
+@keyframes floatOrb2 {
+  0% { transform: translate(0,0); }
+  100% { transform: translate(-70px,-50px); }
+}
+
+
+/* ===== GRID CYBERPUNK ===== */
+.bg-ornament .grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(0,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,255,0.06) 1px, transparent 1px);
+  background-size: 70px 70px;
+  animation: gridMove 15s linear infinite;
+}
+
+@keyframes gridMove {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-70px); }
+}
+
+
+/* ========= SOCIAL LINKS ========= */
+.social-list a {
+  display: block;
+  margin-bottom: 12px;
+  color: cyan;
+  text-decoration: none;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+.social-list a:hover {
+  color: white;
+  text-shadow: 0 0 10px cyan;
+}
+
+/* ========= CV BUTTON ========= */
+.cv-wrapper {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.cv-btn {
+  padding: 14px 36px;
+  font-size: 1.2rem;
+  color: cyan;
+  border: 2px solid cyan;
+  border-radius: 14px;
+  background: transparent;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.cv-btn:hover {
+  background: cyan;
+  color: black;
+  box-shadow: 0 0 15px cyan, 0 0 40px cyan;
+  transform: scale(1.03);
+}
+
+.cv-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: 0.4s;
+}
+
+.cv-btn:hover::before {
+  left: 100%;
+}
+/* ========= CONTACT PAGE ========= */
+
+.contact-box {
+  text-align: center;
+}
+
+.contact-sub {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: cyan;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  background: rgba(0,0,0,0.4);
+  border: 1px solid cyan;
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  resize: none;
+  transition: 0.3s;
+  backdrop-filter: blur(10px);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  box-shadow: 0 0 12px cyan;
+  transform: scale(1.02);
+}
+
+.contact-btn {
+  padding: 14px;
+  background: transparent;
+  border: 2px solid cyan;
+  color: cyan;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+  letter-spacing: 1px;
+}
+
+.contact-btn:hover {
+  background: cyan;
+  color: black;
+  box-shadow: 0 0 15px cyan, 0 0 40px cyan;
+  transform: scale(1.03);
+}
+/* ===== HOME ABOUT BUTTON ===== */
+.home-btn-wrapper {
+  text-align: center;
+  margin-top: 40px;
+  z-index: 20;
+  position: relative;
+}
+
+.home-about-btn {
+  padding: 14px 40px;
+  font-size: 1.3rem;
+  color: cyan;
+  border: 2px solid cyan;
+  border-radius: 14px;
+  background: transparent;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+/* Hover Glow */
+.home-about-btn:hover {
+  background: cyan;
+  color: #000;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px cyan, 0 0 40px cyan;
+}
+
+/* Slide Light */
+.home-about-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.2);
+  transition: 0.4s;
+}
+
+.home-about-btn:hover::before {
+  left: 100%;
+}
+/* ===== NAV LOGO ===== */
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: cyan;
+  margin-right: auto;        /* dorong menu ke kanan */
+  display: flex;
+  align-items: center;       /* sejajarkan vertikal */
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+/* Efek neon saat hover */
+.nav-logo:hover {
+  text-shadow: 0 0 10px cyan, 0 0 25px cyan;
+  transform: scale(1.05);
+}
+
+/* ===== PERBAIKAN NAV ===== */
+.top-nav nav {
+  display: flex;             /* supaya logo dan menu sejajar */
+  align-items: center;       /* sejajarkan secara vertikal */
+}
+
+.top-nav ul {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+/* ========== FOOTER NEON ========= */
+
+.neon-footer {
+  width: 100%;
+  padding: 80px 0 40px;
+  margin-top: 120px;
+  background: linear-gradient(to bottom, #000, #001d1d, #000);
+  border-top: 1px solid rgba(0, 255, 255, 0.2);
+  animation: footerSlideUp 1s ease forwards;
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+@keyframes footerSlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.footer-content {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.footer-col {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: cyan;
+  text-shadow: 0 0 20px cyan;
+  margin-bottom: 10px;
+}
+
+.footer-col h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: cyan;
+  margin-bottom: 12px;
+}
+
+.footer-col p {
+  font-size: 1rem;
+  opacity: 0.8;
+  margin-bottom: 6px;
+}
+
+/* Garis neon animasi */
+.footer-line {
+  width: 80%;
+  height: 3px;
+  background: linear-gradient(90deg,
+    transparent,
+    cyan,
+    transparent);
+  margin: 40px auto;
+  animation: neonMove 4s linear infinite;
+}
+
+@keyframes neonMove {
+  0% { filter: drop-shadow(0 0 5px cyan); }
+  50% { filter: drop-shadow(0 0 20px cyan); }
+  100% { filter: drop-shadow(0 0 5px cyan); }
+}
+
+/* COPYRIGHT */
+.footer-copy {
+  text-align: center;
+  font-size: 1rem;
+  opacity: 0.7;
+  letter-spacing: 1px;
+}
+/* ===== ABOUT BOX WITH IMAGE ===== */
+.about-box {
+  width: 80%;
+  margin: 120px auto;
+  padding: 40px;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid cyan;
+  border-radius: 25px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 20px rgba(0,255,255,0.2);
+}
+
+.about-left img {
+  width: 260px;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 20px;
+  border: 2px solid cyan;
+  box-shadow: 0 0 25px cyan;
+  transition: .3s;
+}
+
+.about-left img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px cyan;
+}
+
+.about-right {
+  flex: 1;
+}
+
+.about-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: cyan;
+  text-shadow: 0 0 20px cyan;
+  margin-bottom: 20px;
+}
+
+.about-right p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .about-box {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-left img {
+    width: 220px;
+    height: 220px;
+  }
+}
+.edu-link {
+  color: cyan;
+  text-decoration: none;
+  font-weight: 700;
+  transition: 0.3s;
+}
+
+.edu-link:hover {
+  color: white;
+  text-shadow: 0 0 10px cyan, 0 0 25px cyan;
+}
